@@ -1,15 +1,22 @@
-import { Fragment } from 'react'
-import{MARCAS, YEARS, PLAN} from '../constants/index'
-export function Formulario () {
+import { Fragment, } from 'react'
+import { MARCAS, YEARS, PLAN } from '../constants/index';
+import { useCotizador } from '../hooks/useCotizador';
 
-    return(
+export function Formulario() {
+    const { datos, handleChangeDatos } = useCotizador()
+    return (
         <>
             <form>
                 <div className="my-5">
                     <label className="block mb-3 font-bold text-gray-400 uppercase">
                         Marca
                     </label>
-                    <select name="marca" className="w-full p-3 bg-white border border-gray-200">
+                    <select
+                        name="marca"
+                        className="w-full p-3 bg-white border border-gray-200"
+                        onChange={e => handleChangeDatos(e)}
+                        value={datos.marca}
+                    >
                         <option value="">-- Selecciona Marca --</option>
                         {
                             MARCAS.map(marca => (
@@ -22,7 +29,11 @@ export function Formulario () {
                     <label className="block mb-3 font-bold text-gray-400 uppercase">
                         AÑO
                     </label>
-                    <select name="marca" className="w-full p-3 bg-white border border-gray-200">
+                    <select name="year"
+                        className="w-full p-3 bg-white border border-gray-200"
+                        onChange={e=> handleChangeDatos(e)}
+                        value={datos.year}
+                    >
                         <option value="">-- Selecciona año--</option>
                         {
                             YEARS.map((year, index) => (
@@ -46,6 +57,7 @@ export function Formulario () {
                                         type='radio'
                                         name='plan'
                                         value={item.id}
+                                        onChange={e => handleChangeDatos(e)}
                                     />
                                 </Fragment>
                             ))
@@ -53,7 +65,7 @@ export function Formulario () {
                     </div>
                 </div>
                 <input type='submit' className='w-full  bg-indigo-500 hover:bg-indigo-600 transition-colors
-                text-white cursor-pointer p-3 uppercase font-bold' value='cotizar'/>
+                text-white cursor-pointer p-3 uppercase font-bold' value='cotizar' />
             </form>
         </>
     )
