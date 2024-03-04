@@ -4,7 +4,7 @@ export const MARCAS = [
     { id: 3, nombre: 'Asiatico' }
 ]
 const YEARMAX = new Date().getFullYear();
-export const YEARS = Array.from(new Array(20), (_,index) => YEARMAX - index)
+export const YEARS = Array.from(new Array(20), (_, index) => YEARMAX - index)
 
 
 export const PLAN = [
